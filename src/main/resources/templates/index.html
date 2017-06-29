@@ -1,46 +1,52 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Spring Boot Thymeleaf Hello World Example</title>
+<title>CellGame - 2017</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" type="text/css"
 	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<link rel="stylesheet" th:href="@{/css/main.css}"
+<link rel="stylesheet" type="text/css" th:href="@{/static/style/main.css}"
 	href="../../css/main.css" />
 
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Spring Boot</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
 	<div class="container">
-
-		<div class="starter-template">
-			<h1>Spring Boot Web Thymeleaf Example</h1>
-			<h2>
-				<span th:text="'Message: ' + ${message}"></span>
-			</h2>
+		<div class="row">
+			<div class="col-sm-4 description">
+				<h1>Game of Life</h1>
+				
+				<div class="details">
+					<div>
+						<span>A living cell dies if has more living neighbour than 3</span>				
+					</div>
+					<div>
+						<span>A living cell dies if has less living neighbour than 2</span>						
+					</div>
+					<div>
+						<span>A dead cell comes alive when it has 3 living neighbours </span>						
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<table>
+					
+				</table>
+			</div>
+			<div class="col-sm-4">
+				<table>
+					
+				</table>
+			</div>
 		</div>
-
 	</div>
-	<!-- /.container -->
-
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	<div class="row">
+		<div class="container footer">
+			<div class="jumbotron">
+				<p>CellGame - 2017 </p>
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
