@@ -1,12 +1,17 @@
 package vzsolt.gameoflife.cellgame.board;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Cell {
 	
 	private CellState state;
 	private CellColor color;
 	private int posX;
 	private int posY;
+	@JsonIgnore
 	private NeighbourInfo neighbourInfo;
 	
 	public Cell(){		
@@ -37,19 +42,20 @@ public class Cell {
 		this.color = color;
 		return this;
 	}
-	
+	@JsonIgnore
 	public NeighbourInfo getNeighbourInfo() {
 		return neighbourInfo;
 	}
+	
 	public Cell setNeighbourInfo(NeighbourInfo neighbourInfo) {
 		this.neighbourInfo = neighbourInfo;
 		return this;
 	}
-	
+	@JsonIgnore
 	public int getLivingNeighbours(){
 		return neighbourInfo.getLivingNeighbour();
 	}
-	
+	@JsonIgnore
 	public CellColor getSurroundingColor(){
 		return neighbourInfo.getColor();
 	}

@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import vzsolt.gameoflife.cellgame.board.Board;
 import vzsolt.gameoflife.cellgame.board.BoardHandler;
@@ -36,7 +35,7 @@ public class CycleManager implements CycleManagerInterface {
 
 	}
 
-	private void fillNeighbourInfo(final Board board) {
+	public void fillNeighbourInfo(final Board board) {
 		board.getCells().values().parallelStream().flatMap(map->map.values().stream())
 				.forEach(boardHandler::setNeighbourInfo);
 	}
@@ -84,6 +83,12 @@ public class CycleManager implements CycleManagerInterface {
 	@Override
 	public Board getBoardCopy(){
 		return boardHandler.getBoard().copy();
+	}
+
+	@Override
+	public void startGame(Board board) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

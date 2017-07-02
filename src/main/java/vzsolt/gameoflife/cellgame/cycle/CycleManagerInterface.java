@@ -18,5 +18,9 @@ public interface CycleManagerInterface {
 	boolean previousEnable();
 
 	Board getBoardCopy();
+	
+	void startGame(Board board);
+	
+	public void fillNeighbourInfo(final Board board);
 
 }

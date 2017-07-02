@@ -44,7 +44,7 @@ public class InMemoryCycleManager implements CycleManagerInterface {
 
 	}
 
-	private void fillNeighbourInfo(final Board board) {
+	public void fillNeighbourInfo(final Board board) {
 		board.getCells().values().parallelStream().flatMap(map->map.values().stream())
 				.forEach(boardHandler::setNeighbourInfo);
 	}
@@ -96,6 +96,14 @@ public class InMemoryCycleManager implements CycleManagerInterface {
 	@Override
 	public Board getBoardCopy(){
 		return boardHandler.getBoard().copy();
+	}
+
+	@Override
+	public void startGame(Board board) {
+		boardHandler.saveBoard(board);
+		boards.clear();
+		boards.put(1, board);		
+		actualCycle = maxCycle = 1;
 	}
 
 }

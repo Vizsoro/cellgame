@@ -1,16 +1,23 @@
 package vzsolt.gameoflife.cellgame.board;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Board {
 
+	
 	private Map<Integer ,Map<Integer, Cell>> cells;
 	private int boardSize;
 	
-	public Board(Map<Integer ,Map<Integer, Cell>> cells){	
+	@JsonCreator
+	public Board(@JsonProperty("cells") Map<Integer ,Map<Integer, Cell>> cells){	
 		checkCells(cells);
 		this.cells = cells;
 		this.boardSize = cells.size();
@@ -23,10 +30,12 @@ public class Board {
 		}
 	}
 	
+	
 	public Map<Integer ,Map<Integer, Cell>> getCells() {
 		return cells;
 	}
 
+	
 	public int getBoardSize() {
 		return boardSize;
 	}
@@ -42,7 +51,5 @@ public class Board {
 		}
 		return new Board(copyCells);		
 	}
-	
-	
 	
 }
