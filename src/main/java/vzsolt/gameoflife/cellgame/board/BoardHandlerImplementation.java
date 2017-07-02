@@ -9,17 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BoardHandlerImplementation implements BoardHandler {
-
-	private Board board;
-	private Board previousBoard;
-
-	@Override
-	public NeighbourInfo findNeighbourInfo(int x, int y) {
+	
+	private NeighbourInfo findNeighbourInfo(Cell cell, Board board) {
 		NeighbourInfo info = new NeighbourInfo();
 		int livingNeighbour = 0;
 		int blue = 0;
 		int green = 0;
-		List<Cell> neighbours = getNeighbours(x,y);
+		List<Cell> neighbours = getNeighbours(cell.getPosX() , cell.getPosY(), board);
 		for (Cell neighbour : neighbours) {
 			if (CellState.LIVE.equals(neighbour.getState())) {
 				livingNeighbour++;
@@ -35,8 +31,8 @@ public class BoardHandlerImplementation implements BoardHandler {
 		return info;
 	}
 
-	@Override
-	public List<Cell> getNeighbours(int x, int y) {
+	
+	public List<Cell> getNeighbours(int x, int y, final Board board) {
 		List<Cell> neighbours = new ArrayList<Cell>();
 		Map<Integer, Map<Integer, Cell>> cells = board.getCells();
 		int max = board.getBoardSize() - 1;
@@ -73,30 +69,9 @@ public class BoardHandlerImplementation implements BoardHandler {
 	}
 
 	@Override
-	public void saveBoard(Board board) {
-		this.board = board;
-
-	}
-
-	@Override
-	public Board getBoard() {
-		return board;
-	}
-
-	@Override
-	public void setNeighbourInfo(Cell cell) {
-		cell.setNeighbourInfo(findNeighbourInfo(cell.getPosX(),cell.getPosY()));
-
-	}
-
-	@Override
-	public Board getPreviousBoard() {
-		return previousBoard;
-	}
-
-	@Override
-	public void savePreviousBoard(Board board) {
-		this.previousBoard = board;
+	public void fillNeighbourInfo(final Board board) {
+		board.getCells().values().parallelStream().flatMap(map->map.values().stream())
+		.forEach(cell->cell.setNeighbourInfo(findNeighbourInfo(cell,board)));
 	}
 
 }

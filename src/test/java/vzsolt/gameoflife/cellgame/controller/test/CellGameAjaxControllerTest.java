@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vzsolt.gameoflife.cellgame.board.Board;
+import vzsolt.gameoflife.cellgame.board.BoardHandler;
 import vzsolt.gameoflife.cellgame.cycle.CycleManagerInterface;
 
 @RunWith(SpringRunner.class)
@@ -32,9 +33,9 @@ public class CellGameAjaxControllerTest {
 
 	@Autowired
 	private ObjectMapper objectMapper;
-
+	
 	@Autowired
-	private CycleManagerInterface cycleManager;
+	private BoardHandler boardHandler;
 
 	@Test
 	public void createTest() throws Exception {
@@ -51,10 +52,9 @@ public class CellGameAjaxControllerTest {
 	public void calculateTest() throws Exception {
 		int cycle = 5;
 		int size = 4;
-		cycleManager.startGame(size, 0.5);
 		MvcResult result = mvc
 				.perform(MockMvcRequestBuilders.post("/cellgame/calculate/" + cycle).contentType(MediaType.APPLICATION_JSON)
-						.content(objectMapper.writeValueAsString(cycleManager.getBoardCopy())).accept(MediaType.APPLICATION_JSON))
+						.content(objectMapper.writeValueAsString(boardHandler.generateBoard(size, 0.5))).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		Map<Integer, Board> boardMap = objectMapper.readValue(result.getResponse().getContentAsString(),
 				new TypeReference<Map<Integer, Board>>() {});

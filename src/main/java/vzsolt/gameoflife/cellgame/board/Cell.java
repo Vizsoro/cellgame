@@ -6,57 +6,63 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Cell {
-	
+
 	private CellState state;
 	private CellColor color;
 	private int posX;
 	private int posY;
 	@JsonIgnore
 	private NeighbourInfo neighbourInfo;
-	
-	public Cell(){		
+
+	public Cell() {
 	}
-	
-	public Cell(Cell cell){
+
+	public Cell(Cell cell) {
 		this.posX = cell.posX;
 		this.posY = cell.posY;
 		this.state = cell.state;
 		this.color = cell.color;
-		
-		if(cell.neighbourInfo != null){
-			this.neighbourInfo = new NeighbourInfo(cell.neighbourInfo);			
+
+		if (cell.neighbourInfo != null) {
+			this.neighbourInfo = new NeighbourInfo(cell.neighbourInfo);
 		}
 	}
-	
+
 	public CellState getState() {
 		return state;
 	}
+
 	public Cell setState(CellState state) {
 		this.state = state;
 		return this;
 	}
+
 	public CellColor getColor() {
 		return color;
 	}
+
 	public Cell setColor(CellColor color) {
 		this.color = color;
 		return this;
 	}
+
 	@JsonIgnore
 	public NeighbourInfo getNeighbourInfo() {
 		return neighbourInfo;
 	}
-	
+
 	public Cell setNeighbourInfo(NeighbourInfo neighbourInfo) {
 		this.neighbourInfo = neighbourInfo;
 		return this;
 	}
+
 	@JsonIgnore
-	public int getLivingNeighbours(){
+	public int getLivingNeighbours() {
 		return neighbourInfo.getLivingNeighbour();
 	}
+
 	@JsonIgnore
-	public CellColor getSurroundingColor(){
+	public CellColor getSurroundingColor() {
 		return neighbourInfo.getColor();
 	}
 
@@ -113,9 +119,5 @@ public class Cell {
 	public String toString() {
 		return "Cell [state=" + state + ", color=" + color + ", posX=" + posX + ", posY=" + posY + "]";
 	}
-	
-	
 
-	
-	
 }
