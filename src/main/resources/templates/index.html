@@ -4,49 +4,73 @@
 <title>CellGame - 2017</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	th:src="@{js/angular.min.js}"></script>
+<script
+	th:src="@{js/cellgame.main.js}"></script>
+<script>
+var cellGameApp = angular.module("cellGameApp", []);
+</script>
 
-<link rel="stylesheet" type="text/css" th:href="@{/static/style/main.css}"
-	href="../../css/main.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{style/bootstrap.min.css}" />
+
+<link rel="stylesheet" type="text/css" th:href="@{style/main.css}" />
 
 </head>
-<body>
+<body >
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Rules</a> <a class="navbar-brand"
+					href="#">Start game</a>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 description">
 				<h1>Game of Life</h1>
-				
+				<div data-ng-app="cellGameApp" ng-init="name = 'world'" >
+					<h1>Hello, {{name}}!</h1>
+				</div>
+
 				<div class="details">
 					<div>
-						<span>A living cell dies if has more living neighbour than 3</span>				
+						<span>A living cell dies if has more living neighbour than
+							3</span>
 					</div>
 					<div>
-						<span>A living cell dies if has less living neighbour than 2</span>						
+						<span>A living cell dies if has less living neighbour than
+							2</span>
 					</div>
 					<div>
-						<span>A dead cell comes alive when it has 3 living neighbours </span>						
+						<span>A dead cell comes alive when it has 3 living
+							neighbours </span>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<table>
-					
+
 				</table>
 			</div>
 			<div class="col-sm-4">
 				<table>
-					
+
 				</table>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="container footer">
-			<div class="jumbotron">
-				<p>CellGame - 2017 </p>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<p class="navbar-brand">CellGame - 2017</p>
 			</div>
 		</div>
-	</div>	
+	</nav>
+
 </body>
 </html>

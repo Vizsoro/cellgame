@@ -21,7 +21,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vzsolt.gameoflife.cellgame.board.Board;
 import vzsolt.gameoflife.cellgame.board.BoardHandler;
-import vzsolt.gameoflife.cellgame.cycle.CycleManagerInterface;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
